@@ -99,7 +99,7 @@ function outputImage(matrix, name) {
   }
   cv.erode(src3, conditionalErosion, elementV);
 
-  for (let i = 0; i < 3; i++) {
+  while (true) {
     cv.dilate(conditionalErosion, conditionalErosion, elementD);
     cv.bitwise_and(src3, conditionalErosion, result);
 
