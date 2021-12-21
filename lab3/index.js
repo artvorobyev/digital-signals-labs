@@ -1,13 +1,6 @@
-const { createCanvas, loadImage } = require('canvas');
-const { writeFileSync } = require('fs');
+const { loadImage } = require('canvas');
 const path = require('path');
-const { loadOpenCV } = require('../base');
-
-function outputImage(matrix, name) {
-  const canvas = createCanvas(matrix.cols, matrix.rows);
-  cv.imshow(canvas, matrix);
-  writeFileSync(`output-${name}.png`, canvas.toBuffer('image/png'));
-}
+const { loadOpenCV, outputImage } = require('../base');
 
 (async () => {
   await loadOpenCV();

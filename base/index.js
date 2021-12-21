@@ -1,5 +1,7 @@
 const { Canvas, Image, ImageData } = require('canvas');
 const { JSDOM } = require('jsdom');
+const { writeFileSync } = require('fs');
+const { createCanvas } = require('canvas');
 
 function loadOpenCV() {
   if (
@@ -28,5 +30,10 @@ function installDOM() {
   global.ImageData = ImageData;
   global.HTMLImageElement = Image;
 }
+function outputImage(matrix, name) {
+  const canvas = createCanvas(matrix.cols, matrix.rows);
+  cv.imshow(canvas, matrix);
+  writeFileSync(`output-${name}.png`, canvas.toBuffer('image/png'));
+}
 
-module.exports = { loadOpenCV };
+module.exports = { loadOpenCV, outputImage };
